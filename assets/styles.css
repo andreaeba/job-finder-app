@@ -12,3 +12,7 @@ nav a {
     display: flex;
     align-items: center;
 }
+
+.form-ctrl {
+    width: 60%
+}
