@@ -38,8 +38,6 @@ const loadCard = () => {
                 card.appendChild(button)
         }   }) 
 
-           
-
      
 }
 
