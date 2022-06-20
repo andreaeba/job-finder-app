@@ -14,23 +14,37 @@
     <div class="container-fluid d-flex justify-content-center align-items-center mt-5">
         <form id="select-form" class="form-ctrl d-flex">
             
-            <select class="form-control mb-3 me-4" name="homeLocation" id="homeLocation">
-                <option selected>Location</option>
+            <select class="form-control mb-3 me-4" name="homeLocation" id="locations">
+                <!-- <option selected>Location</option>
                 <option value="homeLocation">Uruguay</option>
                 <option value="homeLocation">Suecia</option>
-                <option value="homeLocation">Venezuela</option>
+                <option value="homeLocation">Venezuela</option> -->
             </select>
 
             <select class="form-control mb-3 me-4" name="homeSeniority" id="homeSeniority">
-                <option selected>Seniority</option>
-                <option value="homeSeniority">Junior</option>
-                <option value="homeSeniority">Senior</option>
+                <option value="seniority-trainee">Trainee</option>
+                <option value="seniority-jr">Junior</option>
+                <option value="seniority-semijr">Semi Senior</option>
+                <option value="senior">Senior</option>
             </select>
 
             <select class="form-control mb-3 me-4" name="homeCategory" id="homeCategory">
                 <option selected>Category</option>
-                <option value="homeCategory">Developer</option>
-                <option value="homeCategory">UX/UI</option>
+                <option value="category-developer">Front-end Developer</option>
+                    <option value="category-developer">Back-end Developer</option>
+                    <option value="category-developer">Full Stack Developer</option>
+                    <option value="homeCategory">UX/UI</option>
+                    <option value="category-developer">Designer</option>
+                    <option value="category-developer">Business Intelligence</option>
+                    <option value="category-developer">Game Developer</option>
+                    <option value="category-developer">Project Manager</option>
+                    <option value="category-developer">Salesforce Administrator</option>
+                    <option value="category-developer">Tester</option>
+                    <option value="category-developer">QA Analyst</option>
+                    <option value="category-developer">Mobile Developer</option>
+                    <option value="category-developer">Scrum Master</option>
+                    <option value="category-developer">Help Desk IT</option>
+                    <option value="category-developer">Architect IT</option>
             </select>
 
             <button type="submit" class="btn btn-primary mb-3 me-2">Search</button>

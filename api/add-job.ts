@@ -23,6 +23,6 @@ formAddJob.addEventListener('submit', async (e) => {
     
     await fetch('https://62aa61db371180affbd48229.mockapi.io/jobsfinder/jobs', createJobs)
 
-    //  window.location.reload()
+    window.location.href = window.location.pathname + "/../home.html"
 })
 
