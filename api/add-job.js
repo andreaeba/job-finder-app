@@ -57,11 +57,10 @@ formAddJob.addEventListener('submit', function (e) { return __awaiter(_this, voi
                     },
                     body: JSON.stringify(payload)
                 };
-                return [4 /*yield*/, fetch('https://62aa61db371180affbd48229.mockapi.io/jobsfinder/jobs', createJobs)
-                    //  window.location.reload()
-                ];
+                return [4 /*yield*/, fetch('https://62aa61db371180affbd48229.mockapi.io/jobsfinder/jobs', createJobs)];
             case 1:
                 _a.sent();
+                window.location.href = window.location.pathname + "/../home.html";
                 return [2 /*return*/];
         }
     });
