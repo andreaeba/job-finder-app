@@ -1,44 +1,51 @@
-const selectHomePage = document.getElementById('select-form')
+const homeCards = document.getElementById('home-cards')
 
-const loadCard = () => {
+const loadCards = () => {
 
-    fetch('https://62aa61db371180affbd48229.mockapi.io/jobsfinder/jobs.json')
+    fetch('https://62aa61db371180affbd48229.mockapi.io/jobsfinder/jobs')
         .then(response => response.json())
         .then(data => {
 
-            console.log(data)
+            // console.log(data)
 
-            for(const prop in data) {
+            for(const id in data) {
 
+                // console.log(data[id])
                 const card = document.createElement('div')
                 card.classList.add('card')
 
-                for(const key in data[prop]) {
+                for(const prop in data[id]) {
 
-                    if (key == 'title') {
+                    console.log(prop)
 
-                        const h3 = document.createElement('p')
-                        const text = document.createTextNode(`Title: ${data[prop][key]}`)
+                    if (prop == 'title') {
+
+                        const h4 = document.createElement('h4')
+                        const text = document.createTextNode(data[id][prop])
             
-                        card.appendChild(h3)
-                        h3.appendChild(text)
+                        card.appendChild(h4)
+                        h4.appendChild(text)
+                    } else if (prop == "description") {
 
-                    } else if (key == 'location' && key == 'seniority' && key == 'category') {
                         const p = document.createElement('p')
-                        const textP = document.createTextNode(`${key}: `+ data[prop][key])
+                        // card.app
+                    } else if (prop == 'location' || prop == 'seniority' || prop == 'category') {
+                        const p = document.createElement('p')
+                        const textP = document.createTextNode(data[id][prop])
 
                         card.appendChild(p)
                         p.appendChild(textP)
                 
                     } 
                 } 
-                const button = document.createElement('button')
-                button.innerText = "See Details"
-                button.classList.add('btn btn-primary')
-                card.appendChild(button)
-        }   }) 
-
+                homeCards.appendChild(card)
+                // const button = document.createElement('button')
+                // button.innerText = "See Details"
+                // button.classList.add('btn btn-primary')
+                // card.appendChild(button)
+            }   
+        })
      
 }
 
-loadCard()
+loadCards()

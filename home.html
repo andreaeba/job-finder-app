@@ -11,8 +11,8 @@
 <body>
     <script src="./app/scripts.js"></script>
     
-    <div class="container-fluid d-flex justify-content-center align-items-center mt-5">
-        <form id="select-form" class="form-ctrl d-flex">
+    <div class="container-fluid d-flex flex-column justify-content-center align-items-center mt-5">
+        <form class="form-ctrl d-flex">
             
             <select class="form-control mb-3 me-4" name="homeLocation" id="locations">
                 <!-- <option selected>Location</option>
@@ -52,6 +52,10 @@
             <button type="submit" class="btn btn-outline-primary mb-3">Clear</button>
 
         </form>
+
+        <div id="home-cards" class="wrapper-cards">
+
+        </div>
     </div>
 
     <script src="./app/home.js"></script>

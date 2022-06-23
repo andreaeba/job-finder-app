@@ -21,3 +21,18 @@ nav a {
 .form-ctrl {
     width: 60%
 }
+
+.card {
+    width: 200px;
+    max-width: 300px;
+    padding: 5px;
+    margin: 5px;
+}
+
+.wrapper-cards {
+    width: 60%;
+    display: flex;
+    flex-wrap: wrap;
+    /* max-width: 600px; */
+
+}

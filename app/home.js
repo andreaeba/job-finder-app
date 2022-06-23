@@ -1,31 +1,38 @@
-var selectHomePage = document.getElementById('select-form');
-var loadCard = function () {
-    fetch('https://62aa61db371180affbd48229.mockapi.io/jobsfinder/jobs.json')
+var homeCards = document.getElementById('home-cards');
+var loadCards = function () {
+    fetch('https://62aa61db371180affbd48229.mockapi.io/jobsfinder/jobs')
         .then(function (response) { return response.json(); })
         .then(function (data) {
-        console.log(data);
-        for (var prop in data) {
+        // console.log(data)
+        for (var id in data) {
+            // console.log(data[id])
             var card = document.createElement('div');
             card.classList.add('card');
-            for (var key in data[prop]) {
-                if (key == 'title') {
-                    var h3 = document.createElement('p');
-                    var text = document.createTextNode("Title: ".concat(data[prop][key]));
-                    card.appendChild(h3);
-                    h3.appendChild(text);
+            for (var prop in data[id]) {
+                console.log(prop);
+                if (prop == 'title') {
+                    var h4 = document.createElement('h4');
+                    var text = document.createTextNode(data[id][prop]);
+                    card.appendChild(h4);
+                    h4.appendChild(text);
                 }
-                else if (key == 'location' && key == 'seniority' && key == 'category') {
+                else if (prop == "description") {
                     var p = document.createElement('p');
-                    var textP = document.createTextNode("".concat(key, ": ") + data[prop][key]);
+                    // card.app
+                }
+                else if (prop == 'location' || prop == 'seniority' || prop == 'category') {
+                    var p = document.createElement('p');
+                    var textP = document.createTextNode(data[id][prop]);
                     card.appendChild(p);
                     p.appendChild(textP);
                 }
             }
-            var button = document.createElement('button');
-            button.innerText = "See Details";
-            button.classList.add('btn btn-primary');
-            card.appendChild(button);
+            homeCards.appendChild(card);
+            // const button = document.createElement('button')
+            // button.innerText = "See Details"
+            // button.classList.add('btn btn-primary')
+            // card.appendChild(button)
         }
     });
 };
-loadCard();
+loadCards();
