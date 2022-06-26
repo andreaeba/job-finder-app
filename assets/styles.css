@@ -19,20 +19,54 @@ nav a {
 }
 
 .form-ctrl {
-    width: 60%
+    width: 70%
 }
 
 .card {
-    width: 200px;
+    width: 24%;
     max-width: 300px;
-    padding: 5px;
+    padding: 10px;
     margin: 5px;
 }
 
 .wrapper-cards {
-    width: 60%;
+    width: 70%;
     display: flex;
     flex-wrap: wrap;
     /* max-width: 600px; */
 
+}
+
+.description-card {
+    font-size: 13px;
+}
+
+.card-tags {
+    font-size: 11px;
+    border-radius: 5px;
+    padding: 2px 5px;
+    margin-right: 2px;
+    font-weight: 700;
+}
+
+.btn-details {
+    width: 60%;
+}
+
+.card-details {
+
+    width: 50%;
+    height: 400px;
+    /* background-color: aqua; */
+    border: 1px solid black;
+    border-radius: 20px;
+
+}
+
+.card-tags-details {
+    font-size: 15px;
+    border-radius: 5px;
+    padding: 5px 10px;
+    margin-right: 10px;
+    font-weight: 700;
 }

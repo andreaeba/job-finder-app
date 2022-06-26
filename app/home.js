@@ -1,7 +1,8 @@
+var homeCards = document.getElementById('home-cards');
+// Funciones que traen los filtros desde la DB
 var locationsFilter = document.getElementById('filter-locations');
 var senioritiesFilter = document.getElementById('filter-seniorities');
 var categoriesFilter = document.getElementById('filter-categories');
-var homeCards = document.getElementById('home-cards');
 var loadLocationsFilter = function () {
     fetch('https://62aa61db371180affbd48229.mockapi.io/jobsfinder/locations')
         .then(function (response) { return response.json(); })
@@ -63,30 +64,39 @@ var loadCards = function () {
             // console.log(data[id])
             var card = document.createElement('div');
             card.classList.add('card');
+            var divTags = document.createElement('div');
+            divTags.classList.add('d-flex');
             for (var prop in data[id]) {
                 // console.log(prop)
                 if (prop == 'title') {
-                    var h4 = document.createElement('h4');
+                    var h5 = document.createElement('h5');
                     var text = document.createTextNode(data[id][prop]);
-                    card.appendChild(h4);
-                    h4.appendChild(text);
+                    card.appendChild(h5);
+                    h5.appendChild(text);
                 }
                 else if (prop == "description") {
                     var p = document.createElement('p');
+                    var text = document.createTextNode(data[id][prop]);
+                    p.classList.add('description-card');
+                    card.appendChild(p);
+                    p.appendChild(text);
                     // card.app
                 }
                 else if (prop == 'location' || prop == 'seniority' || prop == 'category') {
                     var p = document.createElement('p');
                     var textP = document.createTextNode(data[id][prop]);
-                    card.appendChild(p);
+                    p.classList.add('bg-info', 'card-tags');
+                    divTags.appendChild(p);
                     p.appendChild(textP);
                 }
             }
+            card.appendChild(divTags);
+            var buttonDetailes = document.createElement('a');
+            buttonDetailes.textContent = "See Details";
+            buttonDetailes.classList.add('btn', 'btn-primary', 'btn-details');
+            buttonDetailes.setAttribute('href', "./job-details.html?id=".concat(id));
+            card.appendChild(buttonDetailes);
             homeCards.appendChild(card);
-            // const button = document.createElement('button')
-            // button.innerText = "See Details"
-            // button.classList.add('btn btn-primary')
-            // card.appendChild(button)
         }
     });
 };
