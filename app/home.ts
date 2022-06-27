@@ -65,11 +65,13 @@ const loadCategoriesFilter = () => {
         .then(response => response.json())
         .then(data => {
 
-            console.log(data)
+            // console.log(data)
 
             for(let id in data) {
 
                 for(let prop in data[id]) {
+
+                    console.log(data[id].id )
 
                     if(prop == "name") {
 
@@ -89,6 +91,9 @@ const loadCategoriesFilter = () => {
 
 loadCategoriesFilter()
 
+const params = new URLSearchParams(window.location.search)
+
+const id = params.get('id')
 
 const loadCards = () => {
 
@@ -152,7 +157,7 @@ const loadCards = () => {
                 const buttonDetailes = document.createElement('a')
                 buttonDetailes.textContent = "See Details"
                 buttonDetailes.classList.add('btn', 'btn-primary', 'btn-details')
-                buttonDetailes.setAttribute('href', `./job-details.html?id=${id}`)
+                buttonDetailes.setAttribute('href', `./job-details.html?id=${data[id].id}`)
                 card.appendChild(buttonDetailes)
 
                 homeCards.appendChild(card)

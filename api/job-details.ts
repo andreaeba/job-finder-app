@@ -11,13 +11,13 @@ const loadCardJobDetails = () => {
     .then(response => response.json())
     .then(data => {
         
+        const divTags = document.createElement('div')
+        divTags.classList.add('d-flex')
+
+        const divBtns = document.createElement('div')
+        divBtns.classList.add('d-flex')
+
         for(let id in data) {
-
-            const divTags = document.createElement('div')
-            divTags.classList.add('d-flex')
-
-            const divBtns = document.createElement('div')
-            divBtns.classList.add('d-flex')
 
             for(let prop in data[id]) {
 
@@ -52,17 +52,18 @@ const loadCardJobDetails = () => {
                     }      
                     const btnEdit = document.createElement('a')
                     btnEdit.textContent = "Edit job"
-                    btnEdit.setAttribute('href', `./edit-job.html?id=${parseInt(id) + 1}`)
-                    btnEdit.classList.add('btn', 'btn-primary', 'me-2')
-
-                    divBtns.appendChild(btnEdit)      
-                    
+                    btnEdit.setAttribute('href', `./edit-job.html?id=${data[id].id}`)
+                    btnEdit.classList.add('btn', 'btn-success', 'me-2')
+                       
                     const btnDelete = document.createElement('a')
                     btnDelete.textContent = "Delete job"
-                    btnDelete.classList.add('btn', 'btn-primary')
-                    // Viene la función para eliminar el job
+                    btnDelete.classList.add('btn', 'btn-danger')
+                    btnDelete.setAttribute('href', `./delete-job.html?id=${data[id].id}`)
 
+                    divBtns.appendChild(btnEdit)   
                     divBtns.appendChild(btnDelete)
+
+
                 }
             }
             cardJobDetails.appendChild(divTags)

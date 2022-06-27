@@ -5,11 +5,11 @@ var loadCardJobDetails = function () {
     fetch('https://62aa61db371180affbd48229.mockapi.io/jobsfinder/jobs/')
         .then(function (response) { return response.json(); })
         .then(function (data) {
+        var divTags = document.createElement('div');
+        divTags.classList.add('d-flex');
+        var divBtns = document.createElement('div');
+        divBtns.classList.add('d-flex');
         for (var id_1 in data) {
-            var divTags = document.createElement('div');
-            divTags.classList.add('d-flex');
-            var divBtns = document.createElement('div');
-            divBtns.classList.add('d-flex');
             for (var prop in data[id_1]) {
                 if (data[id_1][prop] == params.get('id')) {
                     for (var prop_1 in data[id_1]) {
@@ -33,13 +33,13 @@ var loadCardJobDetails = function () {
                     }
                     var btnEdit = document.createElement('a');
                     btnEdit.textContent = "Edit job";
-                    btnEdit.setAttribute('href', "./edit-job.html?id=".concat(parseInt(id_1) + 1));
-                    btnEdit.classList.add('btn', 'btn-primary', 'me-2');
-                    divBtns.appendChild(btnEdit);
+                    btnEdit.setAttribute('href', "./edit-job.html?id=".concat(data[id_1].id));
+                    btnEdit.classList.add('btn', 'btn-success', 'me-2');
                     var btnDelete = document.createElement('a');
                     btnDelete.textContent = "Delete job";
-                    btnDelete.classList.add('btn', 'btn-primary');
-                    // Viene la función para eliminar el job
+                    btnDelete.classList.add('btn', 'btn-danger');
+                    btnDelete.setAttribute('href', "./delete-job.html?id=".concat(data[id_1].id));
+                    divBtns.appendChild(btnEdit);
                     divBtns.appendChild(btnDelete);
                 }
             }

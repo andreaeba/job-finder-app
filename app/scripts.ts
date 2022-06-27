@@ -14,14 +14,12 @@ header.appendChild(navbar)
 navbar.appendChild(navContainer)
 
 const logo = document.createElement('a')
-logo.setAttribute('href', '#')
+logo.setAttribute('href', './home.html')
 logo.classList.add('navbar-brand', 'ms-5')
 logo.textContent = "<Job Finder/>"
 
 navContainer.appendChild(logo)
 
-// const divUl = document.createElement('div')
-// divUl.classList.add('collapse', 'navbar-collapse')
 const ul = document.createElement('ul')
 ul.classList.add('navbar-nav', 'flex-row', 'me-5')
 const li1 = document.createElement('li')
