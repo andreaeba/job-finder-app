@@ -69,3 +69,39 @@ nav a {
     margin-right: 10px;
     font-weight: 700;
 }
+
+@media (max-width: 768px) {
+    .container-fluid form {
+        width:100%;
+    }
+
+    .wrapper-cards {
+        width:100%;
+    }
+
+    .card {
+        width:30%;
+    }
+
+}
+
+@media (max-width: 576px) {
+    .form-ctrl   {
+        display:flex;
+        flex-direction: column;
+    }
+
+    #search-btn  {
+        margin:0px;
+
+    }
+
+    .wrapper-cards {
+        width:100%;
+    }
+
+    .card {
+       
+        width:100%;
+    }
+}
