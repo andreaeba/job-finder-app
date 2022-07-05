@@ -27,7 +27,7 @@ li1.classList.add('me-3')
 const aLi1 = document.createElement('a')
 li1.classList.add('nav-item')
 aLi1.textContent = "Home"
-aLi1.setAttribute('href', './home.html')
+aLi1.setAttribute('href', './index.html')
 
 
 const li2 = document.createElement('li')

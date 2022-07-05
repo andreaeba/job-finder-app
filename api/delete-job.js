@@ -51,7 +51,7 @@ formDelete.addEventListener('submit', function (e) { return __awaiter(_this, voi
                 return [4 /*yield*/, fetch("https://62aa61db371180affbd48229.mockapi.io/jobsfinder/jobs/".concat(id), deleteJob)];
             case 1:
                 _a.sent();
-                window.location.href = window.location.pathname + "/../home.html";
+                window.location.href = window.location.pathname + "/../index.html";
                 return [2 /*return*/];
         }
     });

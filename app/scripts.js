@@ -20,7 +20,7 @@ li1.classList.add('me-3');
 var aLi1 = document.createElement('a');
 li1.classList.add('nav-item');
 aLi1.textContent = "Home";
-aLi1.setAttribute('href', './home.html');
+aLi1.setAttribute('href', './index.html');
 var li2 = document.createElement('li');
 var aLi2 = document.createElement('a');
 li2.classList.add('nav-item');

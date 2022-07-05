@@ -93,7 +93,7 @@ nav a {
 
     #search-btn  {
         margin:0px;
-
+        margin-right: 0px;
     }
 
     .wrapper-cards {
@@ -101,7 +101,7 @@ nav a {
     }
 
     .card {
-       
         width:100%;
     }
+
 }

@@ -15,7 +15,7 @@ formDelete.addEventListener('submit', async (e) => {
 
     await fetch(`https://62aa61db371180affbd48229.mockapi.io/jobsfinder/jobs/${id}`, deleteJob)
 
-    window.location.href = window.location.pathname + "/../home.html"
+    window.location.href = window.location.pathname + "/../index.html"
 })
 
 const deleteCancel = document.getElementById('delete-cancel') as HTMLElement
