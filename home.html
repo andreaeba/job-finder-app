@@ -13,22 +13,22 @@
     <script src="./app/scripts.js"></script>
     
     <div class="container-fluid d-flex flex-column justify-content-center align-items-center mt-5">
-        <form class="form-ctrl d-flex">
+        <form class="form-ctrl d-flex" id="form-ctrl">
             
             <select class="form-control mb-3 me-4" name="homeLocation" id="filter-locations">
-                <option disabled selected>Location</option>
+                <option id="selected-location" disabled selected value="null">Location</option>
             </select>
 
             <select class="form-control mb-3 me-4" name="homeSeniority" id="filter-seniorities">
-                <option disabled selected>Seniority</option>
+                <option disabled selected value="null">Seniority</option>
             </select>
 
             <select class="form-control mb-3 me-4" name="homeCategory" id="filter-categories">
-                <option disabled selected>Category</option>
+                <option disabled selected value="null">Category</option>
             </select>
 
-            <button type="submit" class="btn btn-primary mb-3 me-2">Search</button>
-            <button type="submit" class="btn btn-outline-primary mb-3">Clear</button>
+            <button type="submit" class="btn btn-primary mb-3 me-2" id="search-btn">Search</button>
+            <a href="./home.html" class="btn btn-outline-primary mb-3" id="clear-btn">Clear</a>
 
         </form>
 

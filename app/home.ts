@@ -1,14 +1,18 @@
 const inicializarPagina = () => {
-    loadCards()
+    searchFilters()
 }
 
 const homeCards = document.getElementById('home-cards') as HTMLElement
 
-// Funciones que traen los filtros desde la DB
-
 const locationsFilter = document.getElementById('filter-locations') as HTMLElement
 const senioritiesFilter = document.getElementById('filter-seniorities') as HTMLElement
 const categoriesFilter = document.getElementById('filter-categories') as HTMLElement
+
+const selectedLocation = document.getElementById('selected-location')
+
+const formControl = document.getElementById('form-ctrl') as HTMLFormElement
+const formControlBtn = document.getElementById('search-btn') as HTMLElement
+const clearBtn = document.getElementById('clear-btn') as HTMLElement
 
 const loadLocationsFilter = () => {
 
@@ -69,13 +73,9 @@ const loadCategoriesFilter = () => {
         .then(response => response.json())
         .then(data => {
 
-            // console.log(data)
-
             for(let id in data) {
 
                 for(let prop in data[id]) {
-
-                    // console.log(data[id].id )
 
                     if(prop == "name") {
 
@@ -107,7 +107,6 @@ const loadCards = () => {
 
             for(const id in data) {
 
-                // console.log(data[id])
                 const card = document.createElement('div')
                 card.classList.add('card')
 
@@ -115,8 +114,6 @@ const loadCards = () => {
                 divTags.classList.add('d-flex')
 
                 for(const prop in data[id]) {
-
-                    // console.log(prop)
 
                     if (prop == 'title') {
 
@@ -163,113 +160,119 @@ const loadCards = () => {
      
 }
 
-window.onload = inicializarPagina()
 
-// Filters in URL
+const searchFilters = async () => {
 
-locationsFilter.addEventListener('change', (e) => {
-    const params = new URLSearchParams(window.location.search);
-    params.set('location', e.target.value);
-    
-    window.location.href = window.location.pathname + '?' + params.toString()
-    loadCardsWithFilter()
-})
 
-senioritiesFilter.addEventListener('change', (e) => {
-    const params = new URLSearchParams(window.location.search);
-    params.set('seniority', e.target.value);
-    
-    window.location.href = window.location.pathname + '?' + params.toString()
-
-})
-
-categoriesFilter.addEventListener('change', (e) => {
-    const params = new URLSearchParams(window.location.search);
-    params.set('category', e.target.value);
-    
-    window.location.href = window.location.pathname + '?' + params.toString()
-})
-
-let jobsFilters = []
-
-const searchFilters = () => {
-
-    if(params.get('location')) {
-        const locationSelected = params.get('location')
-        console.log(`${locationSelected}`)
-
-        fetch('https://62aa61db371180affbd48229.mockapi.io/jobsfinder/jobs')
+    await fetch('https://62aa61db371180affbd48229.mockapi.io/jobsfinder/jobs')
         .then(response => response.json())
         .then(data => {
 
+        let jobsFilters = data
+
+        if(params.get('location')) {
+
             jobsFilters = data.filter(job => job.location == params.get('location')) 
-            // console.log(jobsFilters)
-            
-            if(params.get('seniority')) {
 
-                jobsFilters = jobsFilters.filter(job => job.seniority == params.get('seniority')) 
-                // console.log(jobsFilters)
-
-                if(params.get('category')) {
-                    jobsFilters = jobsFilters.filter(job => job.category == params.get('category'))  
-                    console.log(jobsFilters)
+        }
+        if(params.get('seniority')) {
         
-                    jobsFilters.forEach(element => {
-                        // console.log(element)
+            jobsFilters = data.filter(job => job.seniority == params.get('seniority')) 
 
-                        homeCards.innerHTML = ""
-                        const card = document.createElement('div')
-                        card.classList.add('card')
+        }
+        if(params.get('category')) {
+    
+            jobsFilters = data.filter(job => job.category == params.get('category')) 
 
-                        const divTags = document.createElement('div')
-                        divTags.classList.add('d-flex')
+        }
 
+        
+        homeCards.innerHTML = ""
 
-                        homeCards.appendChild(card)
+        jobsFilters.forEach(element => {
+        
+            const card = document.createElement('div')
+            card.classList.add('card')
+    
+            const divTags = document.createElement('div')
+            divTags.classList.add('d-flex')
+    
+    
+            homeCards.appendChild(card)
 
-                        for(let prop in element) {
-                            console.log(prop, element[prop])
+            console.log(element);
 
-                            if (prop == 'title') {
+            // title
+            const h5 = document.createElement('h5')
+            const text_title = document.createTextNode(element.title)          
+            card.appendChild(h5)
+            h5.appendChild(text_title)
 
-                            const h5 = document.createElement('h5')
-                            const text = document.createTextNode(element[prop])
-                                            
-                            card.appendChild(h5)
-                            h5.appendChild(text)
-                            } else if (prop == "description") {
+            // description
+            const p_description = document.createElement('p')
+            const text_d = document.createTextNode(element.description)
+            p_description.classList.add('description-card')
+            card.appendChild(p_description)
+            p_description.appendChild(text_d)
+    
+            // location
 
-                                const p = document.createElement('p')
-                                const text = document.createTextNode(element[prop])
-                                p.classList.add('description-card')
-                                
-                                card.appendChild(p)
-                                p.appendChild(text)
+            const p_location = document.createElement('p')
+            const text_location = document.createTextNode(element.location)
+            p_location.classList.add('bg-info', 'card-tags')
+            p_location.appendChild(text_location)
+            divTags.appendChild(p_location)
 
-                            } else if (prop == 'location' || prop == 'seniority' || prop == 'category') {
-                                const p = document.createElement('p')
-                                const textP = document.createTextNode(element[prop])
-                                p.classList.add('bg-info', 'card-tags')
+            // seniority
 
-                            
-                                divTags.appendChild(p)
-                                p.appendChild(textP)
+            const p_seniority = document.createElement('p')
+            const text_seniority = document.createTextNode(element.seniority)
+            p_seniority.classList.add('bg-info', 'card-tags')
+            p_seniority.appendChild(text_seniority)
+            divTags.appendChild(p_seniority)
 
-                            }
-                        }
-                        card.appendChild(divTags)
+            // category
 
-                        const buttonDetailes = document.createElement('a')
-                        buttonDetailes.textContent = "See Details"
-                        buttonDetailes.classList.add('btn', 'btn-primary', 'btn-details')
-                        buttonDetailes.setAttribute('href', `./job-details.html?id=${element["id"]}`)
-                        card.appendChild(buttonDetailes)
-                    });
-                }
+            const p_category = document.createElement('p')
+            const text_category = document.createTextNode(element.category)
+            p_category.classList.add('bg-info', 'card-tags')
+            p_category.appendChild(text_category)
+            divTags.appendChild(p_category)
 
-            }
-        }) 
-    }
+            card.appendChild(divTags)
+    
+            const buttonDetailes = document.createElement('a')
+            buttonDetailes.textContent = "See Details"
+            buttonDetailes.classList.add('btn', 'btn-primary', 'btn-details')
+            buttonDetailes.setAttribute('href', `./job-details.html?id=${element.id}`)
+            card.appendChild(buttonDetailes)
+        });
+
+    })   
+                
 }
 
-searchFilters()
+
+formControl.addEventListener('submit', (e) => {
+    e.preventDefault()
+
+    const params = new URLSearchParams(window.location.search);
+
+    console.log(e.target.homeSeniority.value);
+    if(e.target.homeLocation.value !== "null") {
+        params.set('location', e.target.homeLocation.value);
+    }
+    
+    if(e.target.homeSeniority.value !== "null") {
+        params.set('seniority', e.target.homeSeniority.value);
+    }
+    if(e.target.homeCategory.value !== "null") {
+        params.set('category', e.target.homeCategory.value);
+    }    
+
+    window.location.href = window.location.pathname + '?' + params.toString()
+
+})
+
+
+window.onload = inicializarPagina()
