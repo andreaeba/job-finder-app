@@ -14,7 +14,7 @@ header.appendChild(navbar)
 navbar.appendChild(navContainer)
 
 const logo = document.createElement('a')
-logo.setAttribute('href', './home.html')
+logo.setAttribute('href', './index.html')
 logo.classList.add('navbar-brand', 'ms-5')
 logo.textContent = "<Job Finder/>"
 

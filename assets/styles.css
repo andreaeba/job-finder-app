@@ -5,6 +5,12 @@
     padding: 0;
 }
 
+body {
+    position: relative;
+    min-height: 100vh;
+    padding-bottom: 6em;
+}
+
 .navbar-brand {
     font-family: 'Share Tech Mono';
 }
@@ -33,8 +39,7 @@ nav a {
     width: 70%;
     display: flex;
     flex-wrap: wrap;
-    /* max-width: 600px; */
-
+   
 }
 
 .description-card {
@@ -59,7 +64,6 @@ nav a {
     /* background-color: aqua; */
     border: 1px solid #cacaca;
     border-radius: 8px;
-
 }
 
 .card-tags-details {
@@ -69,6 +73,21 @@ nav a {
     margin-right: 10px;
     font-weight: 700;
 }
+ 
+.footer-container {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+} 
+
+.footer-container span {
+    color:white;
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+} 
+
 
 @media (max-width: 768px) {
     .container-fluid form {
@@ -96,12 +115,9 @@ nav a {
         margin-right: 0px;
     }
 
-    .wrapper-cards {
+    .card, .card-details, .wrapper-cards  {
         width:100%;
     }
 
-    .card {
-        width:100%;
-    }
 
 }
