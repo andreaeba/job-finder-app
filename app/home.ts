@@ -20,21 +20,19 @@ const loadLocationsFilter = () => {
         .then(response => response.json())
         .then(data => {
 
-            for(let id in data) {
+            let locations = data
 
-                for(const prop in data[id]) {
+            locations.forEach(element => {
 
-                    if(prop == "name") {
+                const option = document.createElement('option')
+                const textOption = document.createTextNode(element.name)
+                option.appendChild(textOption)
+                option.setAttribute('value', element.name)
 
-                        const option = document.createElement('option')
-                        option.textContent = data[id][prop]
-                        option.setAttribute('value', data[id][prop])
+                locationsFilter.appendChild(option)
 
-                        locationsFilter.appendChild(option)
-
-                    }
-                }
-            }
+            })
+            
         })
 }
 
@@ -46,21 +44,18 @@ const loadSenioritiesFilter = () => {
         .then(response => response.json())
         .then(data => {
 
-            for(let id in data) {
+            let seniorities = data
 
-                for(let prop in data[id]) {
+            seniorities.forEach(element => {
 
-                    if(prop == "name") {
+                const option = document.createElement('option')
+                const textOption = document.createTextNode(element.name)
+                option.appendChild(textOption)
+                option.setAttribute('value', element.name)
 
-                        const option = document.createElement('option')
-                        option.textContent = data[id][prop]
-                        option.setAttribute('value', data[id][prop])
+                senioritiesFilter.appendChild(option)
 
-                        senioritiesFilter.appendChild(option)
-
-                    }  
-                }
-            }
+            })
         })
 }
 
@@ -73,24 +68,19 @@ const loadCategoriesFilter = () => {
         .then(response => response.json())
         .then(data => {
 
-            for(let id in data) {
+            let categories = data
 
-                for(let prop in data[id]) {
+            categories.forEach(element => {
 
-                    if(prop == "name") {
+                const option = document.createElement('option')
+                const textOption = document.createTextNode(element.name)
+                option.appendChild(textOption)
+                option.setAttribute('value', element.name)
 
-                        const option = document.createElement('option')
-                        option.textContent = data[id][prop]
-                        option.setAttribute('value', data[id][prop])
+                categoriesFilter.appendChild(option)
 
-                        categoriesFilter.appendChild(option)
-
-                    }
-                }
-            }
-
+            })
         })
-
 }
 
 loadCategoriesFilter()
@@ -98,67 +88,6 @@ loadCategoriesFilter()
 const params = new URLSearchParams(window.location.search)
 
 const id = params.get('id')
-
-const loadCards = () => {
-
-    fetch('https://62aa61db371180affbd48229.mockapi.io/jobsfinder/jobs')
-        .then(response => response.json())
-        .then(data => {
-
-            for(const id in data) {
-
-                const card = document.createElement('div')
-                card.classList.add('card')
-
-                const divTags = document.createElement('div')
-                divTags.classList.add('d-flex')
-
-                for(const prop in data[id]) {
-
-                    if (prop == 'title') {
-
-                        const h5 = document.createElement('h5')
-                        const text = document.createTextNode(data[id][prop])
-            
-                        card.appendChild(h5)
-                        h5.appendChild(text)
-                    } else if (prop == "description") {
-
-                        const p = document.createElement('p')
-                        const text = document.createTextNode(data[id][prop])
-                        p.classList.add('description-card')
-
-                        card.appendChild(p)
-                        p.appendChild(text)
-                        // card.app
-                    } else if (prop == 'location' || prop == 'seniority' || prop == 'category') {
-
-                        
-                        const p = document.createElement('p')
-                        const textP = document.createTextNode(data[id][prop])
-                        p.classList.add('bg-info', 'card-tags')
-
-                       
-                        divTags.appendChild(p)
-                        p.appendChild(textP)
-                
-                    } 
-                    
-                } 
-                card.appendChild(divTags)
-                
-
-                const buttonDetailes = document.createElement('a')
-                buttonDetailes.textContent = "See Details"
-                buttonDetailes.classList.add('btn', 'btn-primary', 'btn-details')
-                buttonDetailes.setAttribute('href', `./job-details.html?id=${data[id].id}`)
-                card.appendChild(buttonDetailes)
-
-                homeCards.appendChild(card)
-            }   
-        })
-     
-}
 
 
 const searchFilters = async () => {
@@ -199,8 +128,6 @@ const searchFilters = async () => {
     
     
             homeCards.appendChild(card)
-
-            console.log(element);
 
             // title
             const h5 = document.createElement('h5')
@@ -258,7 +185,6 @@ formControl.addEventListener('submit', (e) => {
 
     const params = new URLSearchParams(window.location.search);
 
-    console.log(e.target.homeSeniority.value);
     if(e.target.homeLocation.value !== "null") {
         params.set('location', e.target.homeLocation.value);
     }

@@ -44,16 +44,14 @@ var loadLocationsFilter = function () {
     fetch('https://62aa61db371180affbd48229.mockapi.io/jobsfinder/locations')
         .then(function (response) { return response.json(); })
         .then(function (data) {
-        for (var id_1 in data) {
-            for (var prop in data[id_1]) {
-                if (prop == "name") {
-                    var option = document.createElement('option');
-                    option.textContent = data[id_1][prop];
-                    option.setAttribute('value', data[id_1][prop]);
-                    locationsFilter.appendChild(option);
-                }
-            }
-        }
+        var locations = data;
+        locations.forEach(function (element) {
+            var option = document.createElement('option');
+            var textOption = document.createTextNode(element.name);
+            option.appendChild(textOption);
+            option.setAttribute('value', element.name);
+            locationsFilter.appendChild(option);
+        });
     });
 };
 loadLocationsFilter();
@@ -61,16 +59,14 @@ var loadSenioritiesFilter = function () {
     fetch('https://62aa61db371180affbd48229.mockapi.io/jobsfinder/seniorities')
         .then(function (response) { return response.json(); })
         .then(function (data) {
-        for (var id_2 in data) {
-            for (var prop in data[id_2]) {
-                if (prop == "name") {
-                    var option = document.createElement('option');
-                    option.textContent = data[id_2][prop];
-                    option.setAttribute('value', data[id_2][prop]);
-                    senioritiesFilter.appendChild(option);
-                }
-            }
-        }
+        var seniorities = data;
+        seniorities.forEach(function (element) {
+            var option = document.createElement('option');
+            var textOption = document.createTextNode(element.name);
+            option.appendChild(textOption);
+            option.setAttribute('value', element.name);
+            senioritiesFilter.appendChild(option);
+        });
     });
 };
 loadSenioritiesFilter();
@@ -78,17 +74,14 @@ var loadCategoriesFilter = function () {
     fetch('https://62aa61db371180affbd48229.mockapi.io/jobsfinder/categories')
         .then(function (response) { return response.json(); })
         .then(function (data) {
-        console.log(data);
-        for (var id_3 in data) {
-            for (var prop in data[id_3]) {
-                if (prop == "name") {
-                    var option = document.createElement('option');
-                    option.textContent = data[id_3][prop];
-                    option.setAttribute('value', data[id_3][prop]);
-                    categoriesFilter.appendChild(option);
-                }
-            }
-        }
+        var categories = data;
+        categories.forEach(function (element) {
+            var option = document.createElement('option');
+            var textOption = document.createTextNode(element.name);
+            option.appendChild(textOption);
+            option.setAttribute('value', element.name);
+            categoriesFilter.appendChild(option);
+        });
     });
 };
 loadCategoriesFilter();

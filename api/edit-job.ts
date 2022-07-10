@@ -12,21 +12,18 @@ const loadLocationsFilter = () => {
         .then(response => response.json())
         .then(data => {
 
-            for(let id in data) {
+            let locations = data
 
-                for(const prop in data[id]) {
+            locations.forEach(element => {
 
-                    if(prop == "name") {
+                const option = document.createElement('option')
+                const textOption = document.createTextNode(element.name)
+                option.appendChild(textOption)
+                option.setAttribute('value', element.name)
 
-                        const option = document.createElement('option')
-                        option.textContent = data[id][prop]
-                        option.setAttribute('value', data[id][prop])
+                locationsFilter.appendChild(option)
 
-                        locationsFilter.appendChild(option)
-
-                    }
-                }
-            }
+            })            
         })
 }
 
@@ -38,21 +35,18 @@ const loadSenioritiesFilter = () => {
         .then(response => response.json())
         .then(data => {
 
-            for(let id in data) {
+            let seniorities = data
 
-                for(let prop in data[id]) {
+            seniorities.forEach(element => {
 
-                    if(prop == "name") {
+                const option = document.createElement('option')
+                const textOption = document.createTextNode(element.name)
+                option.appendChild(textOption)
+                option.setAttribute('value', element.name)
 
-                        const option = document.createElement('option')
-                        option.textContent = data[id][prop]
-                        option.setAttribute('value', data[id][prop])
+                senioritiesFilter.appendChild(option)
 
-                        senioritiesFilter.appendChild(option)
-
-                    }  
-                }
-            }
+            })
         })
 }
 
@@ -65,23 +59,18 @@ const loadCategoriesFilter = () => {
         .then(response => response.json())
         .then(data => {
 
-            console.log(data)
+            let categories = data
 
-            for(let id in data) {
+            categories.forEach(element => {
 
-                for(let prop in data[id]) {
+                const option = document.createElement('option')
+                const textOption = document.createTextNode(element.name)
+                option.appendChild(textOption)
+                option.setAttribute('value', element.name)
 
-                    if(prop == "name") {
+                categoriesFilter.appendChild(option)
 
-                        const option = document.createElement('option')
-                        option.textContent = data[id][prop]
-                        option.setAttribute('value', data[id][prop])
-
-                        categoriesFilter.appendChild(option)
-
-                    }
-                }
-            }
+            })
 
         })
 

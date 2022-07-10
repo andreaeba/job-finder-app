@@ -50,16 +50,14 @@ var loadLocationsFilter = function () {
     fetch('https://62aa61db371180affbd48229.mockapi.io/jobsfinder/locations')
         .then(function (response) { return response.json(); })
         .then(function (data) {
-        for (var id_1 in data) {
-            for (var prop in data[id_1]) {
-                if (prop == "name") {
-                    var option = document.createElement('option');
-                    option.textContent = data[id_1][prop];
-                    option.setAttribute('value', data[id_1][prop]);
-                    locationsFilter.appendChild(option);
-                }
-            }
-        }
+        var locations = data;
+        locations.forEach(function (element) {
+            var option = document.createElement('option');
+            var textOption = document.createTextNode(element.name);
+            option.appendChild(textOption);
+            option.setAttribute('value', element.name);
+            locationsFilter.appendChild(option);
+        });
     });
 };
 loadLocationsFilter();
@@ -67,16 +65,14 @@ var loadSenioritiesFilter = function () {
     fetch('https://62aa61db371180affbd48229.mockapi.io/jobsfinder/seniorities')
         .then(function (response) { return response.json(); })
         .then(function (data) {
-        for (var id_2 in data) {
-            for (var prop in data[id_2]) {
-                if (prop == "name") {
-                    var option = document.createElement('option');
-                    option.textContent = data[id_2][prop];
-                    option.setAttribute('value', data[id_2][prop]);
-                    senioritiesFilter.appendChild(option);
-                }
-            }
-        }
+        var seniorities = data;
+        seniorities.forEach(function (element) {
+            var option = document.createElement('option');
+            var textOption = document.createTextNode(element.name);
+            option.appendChild(textOption);
+            option.setAttribute('value', element.name);
+            senioritiesFilter.appendChild(option);
+        });
     });
 };
 loadSenioritiesFilter();
@@ -84,63 +80,19 @@ var loadCategoriesFilter = function () {
     fetch('https://62aa61db371180affbd48229.mockapi.io/jobsfinder/categories')
         .then(function (response) { return response.json(); })
         .then(function (data) {
-        for (var id_3 in data) {
-            for (var prop in data[id_3]) {
-                if (prop == "name") {
-                    var option = document.createElement('option');
-                    option.textContent = data[id_3][prop];
-                    option.setAttribute('value', data[id_3][prop]);
-                    categoriesFilter.appendChild(option);
-                }
-            }
-        }
+        var categories = data;
+        categories.forEach(function (element) {
+            var option = document.createElement('option');
+            var textOption = document.createTextNode(element.name);
+            option.appendChild(textOption);
+            option.setAttribute('value', element.name);
+            categoriesFilter.appendChild(option);
+        });
     });
 };
 loadCategoriesFilter();
 var params = new URLSearchParams(window.location.search);
 var id = params.get('id');
-var loadCards = function () {
-    fetch('https://62aa61db371180affbd48229.mockapi.io/jobsfinder/jobs')
-        .then(function (response) { return response.json(); })
-        .then(function (data) {
-        for (var id_4 in data) {
-            var card = document.createElement('div');
-            card.classList.add('card');
-            var divTags = document.createElement('div');
-            divTags.classList.add('d-flex');
-            for (var prop in data[id_4]) {
-                if (prop == 'title') {
-                    var h5 = document.createElement('h5');
-                    var text = document.createTextNode(data[id_4][prop]);
-                    card.appendChild(h5);
-                    h5.appendChild(text);
-                }
-                else if (prop == "description") {
-                    var p = document.createElement('p');
-                    var text = document.createTextNode(data[id_4][prop]);
-                    p.classList.add('description-card');
-                    card.appendChild(p);
-                    p.appendChild(text);
-                    // card.app
-                }
-                else if (prop == 'location' || prop == 'seniority' || prop == 'category') {
-                    var p = document.createElement('p');
-                    var textP = document.createTextNode(data[id_4][prop]);
-                    p.classList.add('bg-info', 'card-tags');
-                    divTags.appendChild(p);
-                    p.appendChild(textP);
-                }
-            }
-            card.appendChild(divTags);
-            var buttonDetailes = document.createElement('a');
-            buttonDetailes.textContent = "See Details";
-            buttonDetailes.classList.add('btn', 'btn-primary', 'btn-details');
-            buttonDetailes.setAttribute('href', "./job-details.html?id=".concat(data[id_4].id));
-            card.appendChild(buttonDetailes);
-            homeCards.appendChild(card);
-        }
-    });
-};
 var searchFilters = function () { return __awaiter(_this, void 0, void 0, function () {
     return __generator(this, function (_a) {
         switch (_a.label) {
@@ -164,7 +116,6 @@ var searchFilters = function () { return __awaiter(_this, void 0, void 0, functi
                         var divTags = document.createElement('div');
                         divTags.classList.add('d-flex');
                         homeCards.appendChild(card);
-                        console.log(element);
                         // title
                         var h5 = document.createElement('h5');
                         var text_title = document.createTextNode(element.title);
@@ -211,7 +162,6 @@ var searchFilters = function () { return __awaiter(_this, void 0, void 0, functi
 formControl.addEventListener('submit', function (e) {
     e.preventDefault();
     var params = new URLSearchParams(window.location.search);
-    console.log(e.target.homeSeniority.value);
     if (e.target.homeLocation.value !== "null") {
         params.set('location', e.target.homeLocation.value);
     }
